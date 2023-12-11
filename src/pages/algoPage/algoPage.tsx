@@ -7,11 +7,13 @@ import {SelectDesktop} from "@alfalab/core-components/select/Component.desktop";
 import {ButtonDesktop} from "@alfalab/core-components/button/Component.desktop";
 import {executeAlgo} from "../../api/api";
 import {useLocation} from "react-router-dom";
+import {VictoryChart, VictoryScatter} from "victory";
 
 export default function AlgoPage() {
     const algo = useLoaderData() as AlgoRequestI | undefined;
     const location = useLocation();
     const { hash, pathname, search } = location;
+    const [dots, setDots] = useState<number[]>([])
 
     const [selectedParams, setSelectedParams] = useState<{
         trade_strategy: undefined | string;
@@ -40,7 +42,8 @@ export default function AlgoPage() {
     }
 
     function execute(){
-        executeAlgo(pathname.split('/')[2].replace('%20', ' '), selectedParams);
+        executeAlgo(pathname.split('/')[2].replace('%20', ' '), selectedParams)
+            .then(res => setDots(res));
     }
 
     return (
@@ -138,8 +141,20 @@ export default function AlgoPage() {
                     view='primary'
                     onClick={execute}
                 >
-                    Далее 👉
+                    Далее 👇
                 </ButtonDesktop>
+            </div>
+            <div className={styles.chart}>
+                <VictoryChart
+                    domainPadding={20}
+                >
+                    <VictoryScatter
+                        style={{
+                            parent: {border: "1px solid #ccc"}
+                        }}
+                        data={dots.map((y, x) => ({x, y}))}
+                    />
+                </VictoryChart>
             </div>
         </>
     );

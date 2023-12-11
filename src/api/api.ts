@@ -36,7 +36,7 @@ export function executeAlgo(
         features_dict_size: undefined | string;
         models_size: undefined | string;
     }
-): Promise<AlgoRequestI> {
+): Promise<number[]> {
     return fetch(`${BASE_API_PATH}/execute_algo?algo=${algo}&trade_strategy=${params.trade_strategy}&interval=${params.interval}&pred_shift=${params.pred_shift}&features_dict_size=${params.features_dict_size}&models_size=${params.models_size}`, {
         method: 'GET',
         headers: {
