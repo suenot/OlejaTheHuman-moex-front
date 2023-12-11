@@ -17,7 +17,7 @@ export function getAllDatasets(): Promise<AllAlgosRequestT> {
 
 
 export function getAlgo(algo: string): Promise<AlgoRequestI> {
-    return fetch(`${BASE_API_PATH}/get_algo_params?algo=${algo}`, {
+    return fetch(`${BASE_API_PATH}/get_algo_params1?algo=${algo}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
