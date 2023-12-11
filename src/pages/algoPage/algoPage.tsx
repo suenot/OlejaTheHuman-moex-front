@@ -145,7 +145,7 @@ export default function AlgoPage() {
                 </ButtonDesktop>
             </div>
             {
-                dots ?
+                dots.length ?
                     <>
                         <h2 className={styles.chartName}>Прогноз стоимости акций Аэрофлота</h2>
                         <div className={styles.chart}>
