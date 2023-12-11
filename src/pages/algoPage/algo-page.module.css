@@ -26,6 +26,11 @@
     margin: auto;
 }
 
+.chartName{
+    text-align: center;
+    margin: auto;
+}
+
 @media (max-width: 650px) {
     .wrapper {
         flex-direction: column;

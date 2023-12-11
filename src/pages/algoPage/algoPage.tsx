@@ -144,18 +144,25 @@ export default function AlgoPage() {
                     Далее 👇
                 </ButtonDesktop>
             </div>
-            <div className={styles.chart}>
-                <VictoryChart
-                    domainPadding={20}
-                >
-                    <VictoryScatter
-                        style={{
-                            parent: {border: "1px solid #ccc"}
-                        }}
-                        data={dots.map((y, x) => ({x, y}))}
-                    />
-                </VictoryChart>
-            </div>
+            {
+                dots ?
+                    <>
+                        <h2 className={styles.chartName}>Прогноз стоимости акций Аэрофлота</h2>
+                        <div className={styles.chart}>
+                            <VictoryChart
+                                domainPadding={20}
+                            >
+                                <VictoryScatter
+                                    style={{
+                                        parent: {border: "1px solid #ccc"}
+                                    }}
+                                    data={dots.map((y, x) => ({x, y}))}
+                                />
+                            </VictoryChart>
+                        </div>
+                    </>
+                  : null
+            }
         </>
     );
 }
